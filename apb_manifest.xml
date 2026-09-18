@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project_manifest name="Auburn-Professional-Branding" version="1.0.0" framework="React 19 / Vite / Tailwind CSS v4" repository="shawnsommerville204-launchlab/APB" target="gitlab">
+  <metadata>
+    <title>Auburn Professional Branding Web Platform</title>
+    <organization>Auburn Professional Branding (APB)</organization>
+    <founder>Shawn Sommerville</founder>
+    <location>Auburn / Opelika, Alabama</location>
+  </metadata>
+  <files>
+    <file path="README.md" bytes="1968"># Auburn Professional Branding (APB) — Web Platform
+
+Modern, high-performance website and revenue intelligence platform for **Auburn Professional Branding**.
+
+Built with **Vite**, **React 19**, **Tailwind CSS v4**, and **TypeScript**.
+
+---
+
+## 🚀 Quickstart
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Run local development server
+npm run dev
+
+# 3. Build for production
+npm run build
+```
+
+---
+
+## 📦 Project Structure
+
+```
+├── public/
+│   └── favicon.svg           # Scalable APB vector favicon
+├── src/
+│   ├── components/
+│   │   ├── Logo.tsx          # Dual-variant APB vector eagle &amp; wordmark
+│   │   ├── Navbar.tsx        # Sticky responsive navigation with mobile drawer
+│   │   ├── Hero.tsx          # High-impact hero with Nova AI live card
+│   │   ├── Framework.tsx     # The 6-Stage Revenue Model showcase
+│   │   ├── Services.tsx      # 6 Core business capability blocks
+│   │   ├── AuditForm.tsx     # Direct lead intake &amp; revenue scan form
+│   │   └── Footer.tsx        # Branded footer &amp; copyright
+│   ├── App.tsx               # Master layout orchestrator
+│   ├── index.css             # Tailwind CSS v4 custom theme tokens
+│   └── main.tsx              # React 19 entry point
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+```
+
+---
+
+## 🌐 Deploy to Vercel &amp; Connect Custom Domain
+
+1. Push this repository to GitHub:
+   ```bash
+   git init
+   git add .
+   git commit -m &quot;Initial release: APB React 19 web platform&quot;
+   git remote add origin https://github.com/shawnsommerville204-launchlab/APB.git
+   git branch -M main
+   git push -u origin main
+   ```
+2. Import repo in [Vercel](https://vercel.com):
+   - Select `shawnsommerville204-launchlab/APB`.
+   - Keep default Vite build settings (`npm run build`, output: `dist`).
+3. Add your custom domain under **Project Settings → Domains**.
+</file>
+    <file path="index.html" bytes="1090">&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot; class=&quot;scroll-smooth&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;link rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; href=&quot;/favicon.svg&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;Auburn Professional Branding | High-Impact Brand Engineering &amp; Revenue Intelligence&lt;/title&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;Transforming local and regional businesses into high-converting market leaders with elite brand architecture and Nova speed-to-lead automation.&quot; /&gt;
+    &lt;!-- Google Fonts --&gt;
+    &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+    &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+    &lt;link href=&quot;https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Inter:wght@300;400;500;600;700;800&amp;family=Montserrat:wght@600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;/head&gt;
+  &lt;body class=&quot;bg-[#F8FAFC] text-slate-800 antialiased selection:bg-[#F25A24] selection:text-white&quot;&gt;
+    &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+    &lt;script type=&quot;module&quot; src=&quot;/src/main.tsx&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</file>
+    <file path="package.json" bytes="548">{
+  &quot;name&quot;: &quot;apb-website&quot;,
+  &quot;private&quot;: true,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;vite&quot;,
+    &quot;build&quot;: &quot;tsc -b &amp;&amp; vite build&quot;,
+    &quot;preview&quot;: &quot;vite preview&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;lucide-react&quot;: &quot;^0.475.0&quot;,
+    &quot;react&quot;: &quot;^19.0.0&quot;,
+    &quot;react-dom&quot;: &quot;^19.0.0&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@tailwindcss/vite&quot;: &quot;^4.0.0&quot;,
+    &quot;@types/react&quot;: &quot;^19.0.0&quot;,
+    &quot;@types/react-dom&quot;: &quot;^19.0.0&quot;,
+    &quot;@vitejs/plugin-react&quot;: &quot;^4.3.4&quot;,
+    &quot;tailwindcss&quot;: &quot;^4.0.0&quot;,
+    &quot;typescript&quot;: &quot;^5.7.2&quot;,
+    &quot;vite&quot;: &quot;^6.1.0&quot;
+  }
+}
+</file>
+    <file path="tsconfig.json" bytes="509">{
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;ES2020&quot;,
+    &quot;useDefineForClassFields&quot;: true,
+    &quot;lib&quot;: [&quot;ES2020&quot;, &quot;DOM&quot;, &quot;DOM.Iterable&quot;],
+    &quot;module&quot;: &quot;ESNext&quot;,
+    &quot;skipLibCheck&quot;: true,
+    &quot;moduleResolution&quot;: &quot;bundler&quot;,
+    &quot;allowImportingTsExtensions&quot;: true,
+    &quot;isolatedModules&quot;: true,
+    &quot;moduleDetection&quot;: &quot;force&quot;,
+    &quot;noEmit&quot;: true,
+    &quot;jsx&quot;: &quot;react-jsx&quot;,
+    &quot;strict&quot;: true,
+    &quot;noUnusedLocals&quot;: true,
+    &quot;noUnusedParameters&quot;: true,
+    &quot;noFallthroughCasesInSwitch&quot;: true
+  },
+  &quot;include&quot;: [&quot;src&quot;]
+}
+</file>
+    <file path="vite.config.ts" bytes="233">import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
+})
+</file>
+    <file path="public/favicon.svg" bytes="598">&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 100 100&quot; fill=&quot;none&quot;&gt;
+  &lt;rect width=&quot;100&quot; height=&quot;100&quot; rx=&quot;20&quot; fill=&quot;#080D1A&quot;/&gt;
+  &lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;38&quot; stroke=&quot;#F25A24&quot; stroke-width=&quot;6&quot; stroke-dasharray=&quot;160 80&quot; stroke-linecap=&quot;round&quot;/&gt;
+  &lt;path d=&quot;M42 35 C46 32 54 30 62 31 C68 32 75 37 76 43 C72 41 68 42 66 45 C73 45 76 49 75 55 C70 53 66 54 64 58 C68 62 67 69 62 73 C58 66 57 60 52 56 C46 64 42 70 36 75 C41 68 43 60 41 53 C36 58 31 63 26 67 C30 58 34 50 37 42 C33 46 29 50 25 54 C28 44 34 37 42 35 Z&quot; fill=&quot;#001489&quot;/&gt;
+  &lt;polygon points=&quot;46,41 52,42 49,44&quot; fill=&quot;#FFFFFF&quot;/&gt;
+&lt;/svg&gt;
+</file>
+    <file path="src/App.tsx" bytes="1050">import React, { useState } from 'react';
+import { IntroSplash } from './components/IntroSplash';
+import { Navbar } from './components/Navbar';
+import { Hero } from './components/Hero';
+import { Framework } from './components/Framework';
+import { Services } from './components/Services';
+import { FounderSpotlight } from './components/FounderSpotlight';
+import { AuditForm } from './components/AuditForm';
+import { Footer } from './components/Footer';
+
+export const App: React.FC = () =&gt; {
+  const [showIntro, setShowIntro] = useState(true);
+
+  return (
+    &lt;&gt;
+      {showIntro &amp;&amp; &lt;IntroSplash onEnter={() =&gt; setShowIntro(false)} /&gt;}
+      &lt;div className={`min-h-screen flex flex-col bg-[#05070E] text-slate-100 transition-opacity duration-700 ${showIntro ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}&gt;
+        &lt;Navbar /&gt;
+        &lt;main className=&quot;flex-grow&quot;&gt;
+          &lt;Hero /&gt;
+          &lt;Framework /&gt;
+          &lt;Services /&gt;
+          &lt;FounderSpotlight /&gt;
+          &lt;AuditForm /&gt;
+        &lt;/main&gt;
+        &lt;Footer /&gt;
+      &lt;/div&gt;
+    &lt;/&gt;
+  );
+};
+</file>
+    <file path="src/index.css" bytes="475">@import &quot;tailwindcss&quot;;
+
+@theme {
+  --color-brand-cobalt: #001489;
+  --color-brand-vibrant: #0A25C9;
+  --color-brand-orange: #F25A24;
+  --color-brand-orange-hover: #d94917;
+  --color-brand-slate: #8C827A;
+  --color-brand-navy: #080D1A;
+  --color-brand-card-navy: #0F172A;
+  --color-brand-light-bg: #F8FAFC;
+
+  --font-serif: &quot;DM Serif Display&quot;, serif;
+  --font-sans: &quot;Inter&quot;, sans-serif;
+  --font-display: &quot;Montserrat&quot;, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+</file>
+    <file path="src/main.tsx" bytes="241">import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { App } from './App';
+import './index.css';
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;,
+);
+</file>
+    <file path="src/components/AuditForm.tsx" bytes="6084">import React, { useState } from 'react';
+import { Send, CheckCircle } from 'lucide-react';
+
+export const AuditForm: React.FC = () =&gt; {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) =&gt; {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  return (
+    &lt;section id=&quot;audit&quot; className=&quot;py-24 bg-[#080D1A] text-white relative&quot;&gt;
+      &lt;div className=&quot;max-w-4xl mx-auto px-4 sm:px-6 lg:px-8&quot;&gt;
+        
+        &lt;div className=&quot;text-center mb-12&quot;&gt;
+          &lt;span className=&quot;text-[#F25A24] font-bold text-xs uppercase tracking-widest&quot;&gt;
+            Zero Obligation • Rapid Delivery
+          &lt;/span&gt;
+          &lt;h2 className=&quot;font-serif text-3xl sm:text-5xl font-bold mt-2 mb-4&quot;&gt;
+            Claim Your Free Revenue Leak Scan
+          &lt;/h2&gt;
+          &lt;p className=&quot;text-slate-300 text-base max-w-xl mx-auto font-normal&quot;&gt;
+            We will review your public presence, customer journey, and response latency to identify exact revenue leaks and missed opportunities.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;bg-white text-slate-800 rounded-2xl p-8 sm:p-10 shadow-2xl border border-slate-700&quot;&gt;
+          {submitted ? (
+            &lt;div className=&quot;text-center py-12&quot;&gt;
+              &lt;CheckCircle className=&quot;w-16 h-16 text-emerald-500 mx-auto mb-4&quot; /&gt;
+              &lt;h3 className=&quot;text-2xl font-bold text-slate-900 mb-2 font-serif&quot;&gt;
+                Audit Request Submitted!
+              &lt;/h3&gt;
+              &lt;p className=&quot;text-slate-600 max-w-md mx-auto&quot;&gt;
+                We have received your details. Shawn Sommerville will personally review your business footprint and deliver your briefing within 24 hours.
+              &lt;/p&gt;
+            &lt;/div&gt;
+          ) : (
+            &lt;form onSubmit={handleSubmit} className=&quot;space-y-6&quot;&gt;
+              &lt;div className=&quot;grid grid-cols-1 sm:grid-cols-2 gap-6&quot;&gt;
+                &lt;div&gt;
+                  &lt;label className=&quot;block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2&quot;&gt;
+                    Your Full Name
+                  &lt;/label&gt;
+                  &lt;input
+                    type=&quot;text&quot;
+                    required
+                    placeholder=&quot;Shawn Sommerville&quot;
+                    className=&quot;w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#001489] focus:outline-none text-sm&quot;
+                  /&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                  &lt;label className=&quot;block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2&quot;&gt;
+                    Business Name
+                  &lt;/label&gt;
+                  &lt;input
+                    type=&quot;text&quot;
+                    required
+                    placeholder=&quot;e.g. Wingman Heating &amp; Cooling&quot;
+                    className=&quot;w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#001489] focus:outline-none text-sm&quot;
+                  /&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;grid grid-cols-1 sm:grid-cols-2 gap-6&quot;&gt;
+                &lt;div&gt;
+                  &lt;label className=&quot;block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2&quot;&gt;
+                    Direct Phone Number
+                  &lt;/label&gt;
+                  &lt;input
+                    type=&quot;tel&quot;
+                    required
+                    placeholder=&quot;(334) 555-0192&quot;
+                    className=&quot;w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#001489] focus:outline-none text-sm&quot;
+                  /&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                  &lt;label className=&quot;block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2&quot;&gt;
+                    Email Address
+                  &lt;/label&gt;
+                  &lt;input
+                    type=&quot;email&quot;
+                    required
+                    placeholder=&quot;owner@company.com&quot;
+                    className=&quot;w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#001489] focus:outline-none text-sm&quot;
+                  /&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div&gt;
+                &lt;label className=&quot;block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2&quot;&gt;
+                  Website / Google Business URL (If active)
+                &lt;/label&gt;
+                &lt;input
+                  type=&quot;text&quot;
+                  placeholder=&quot;https://example.com&quot;
+                  className=&quot;w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#001489] focus:outline-none text-sm&quot;
+                /&gt;
+              &lt;/div&gt;
+
+              &lt;div&gt;
+                &lt;label className=&quot;block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2&quot;&gt;
+                  Primary Challenge To Address
+                &lt;/label&gt;
+                &lt;select className=&quot;w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#001489] focus:outline-none text-sm bg-white&quot;&gt;
+                  &lt;option&gt;Missed calls &amp;amp; slow customer follow-up&lt;/option&gt;
+                  &lt;option&gt;Outdated website that fails to convert visitors&lt;/option&gt;
+                  &lt;option&gt;Under-pricing services / need authoritative brand kit&lt;/option&gt;
+                  &lt;option&gt;Local competitors outranking us on Google Maps&lt;/option&gt;
+                  &lt;option&gt;Complete brand redesign &amp;amp; automation system&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/div&gt;
+
+              &lt;button
+                type=&quot;submit&quot;
+                className=&quot;w-full bg-[#F25A24] hover:bg-[#d94917] text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-xl transition duration-200 text-base uppercase tracking-wider flex items-center justify-center gap-2&quot;
+              &gt;
+                &lt;span&gt;Submit For Rapid Audit&lt;/span&gt;
+                &lt;Send className=&quot;w-4 h-4&quot; /&gt;
+              &lt;/button&gt;
+
+              &lt;p className=&quot;text-[11px] text-slate-400 text-center mt-3&quot;&gt;
+                🔒 Strictly confidential. No automated marketing spam. Hand-prepared briefing within 24 hours.
+              &lt;/p&gt;
+            &lt;/form&gt;
+          )}
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/section&gt;
+  );
+};
+</file>
+    <file path="src/components/Footer.tsx" bytes="605">import React from 'react';
+import { Logo } from './Logo';
+
+export const Footer: React.FC = () =&gt; {
+  return (
+    &lt;footer className=&quot;bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-sm&quot;&gt;
+      &lt;div className=&quot;max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6&quot;&gt;
+        &lt;Logo variant=&quot;dark&quot; /&gt;
+        &lt;div className=&quot;text-xs text-slate-500 text-center sm:text-right&quot;&gt;
+          &amp;copy; {new Date().getFullYear()} Auburn Professional Branding (APB). All rights reserved. • Auburn, Alabama
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/footer&gt;
+  );
+};
+</file>
+    <file path="src/components/Framework.tsx" bytes="3431">import React from 'react';
+import { Search, Award, MessageSquare, Zap, CheckSquare, RefreshCw } from 'lucide-react';
+
+const stages = [
+  {
+    num: '01',
+    title: 'Discovery',
+    desc: 'Local search visibility and Google Map Pack positioning so buyers locate you first.',
+    icon: Search,
+  },
+  {
+    num: '02',
+    title: 'Trust',
+    desc: 'Elite brand consistency, verified credentials, and high-velocity social proof.',
+    icon: Award,
+  },
+  {
+    num: '03',
+    title: 'Contact',
+    desc: '1-click mobile calling, instant estimate triggers, and frictionless intake forms.',
+    icon: MessageSquare,
+  },
+  {
+    num: '04',
+    title: 'Response',
+    desc: 'Nova AI automated 15-second text-back to capture leads before they call competitors.',
+    icon: Zap,
+    highlight: true,
+  },
+  {
+    num: '05',
+    title: 'Conversion',
+    desc: 'Transparent pricing presentation, automated follow-ups, and streamlined closing.',
+    icon: CheckSquare,
+  },
+  {
+    num: '06',
+    title: 'Retention',
+    desc: 'Systematized review generation, recurring maintenance agreements, and cross-sells.',
+    icon: RefreshCw,
+  },
+];
+
+export const Framework: React.FC = () =&gt; {
+  return (
+    &lt;section id=&quot;framework&quot; className=&quot;py-20 bg-white border-y border-slate-200&quot;&gt;
+      &lt;div className=&quot;max-w-7xl mx-auto px-4 sm:px-6 lg:px-8&quot;&gt;
+        &lt;div className=&quot;text-center max-w-3xl mx-auto mb-16&quot;&gt;
+          &lt;span className=&quot;text-[#F25A24] font-display font-bold text-xs uppercase tracking-widest&quot;&gt;
+            Revenue Engineering
+          &lt;/span&gt;
+          &lt;h2 className=&quot;font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-2 mb-4&quot;&gt;
+            The APB 6-Stage Revenue Model
+          &lt;/h2&gt;
+          &lt;p className=&quot;text-slate-600 text-base&quot;&gt;
+            We don't merely design logos. We systematically audit and optimize every touchpoint where potential clients either convert or leak money.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6&quot;&gt;
+          {stages.map((stg) =&gt; {
+            const IconComponent = stg.icon;
+            return (
+              &lt;div
+                key={stg.num}
+                className={`p-6 rounded-2xl border transition duration-300 ${
+                  stg.highlight
+                    ? 'bg-orange-50/40 border-[#F25A24] shadow-md'
+                    : 'bg-slate-50 border-slate-200 hover:border-[#001489] hover:shadow-sm'
+                }`}
+              &gt;
+                &lt;div className=&quot;flex items-center justify-between mb-4&quot;&gt;
+                  &lt;span className=&quot;text-sm font-bold text-[#8C827A] font-mono&quot;&gt;
+                    {stg.num}
+                  &lt;/span&gt;
+                  &lt;div
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                      stg.highlight
+                        ? 'bg-[#F25A24] text-white'
+                        : 'bg-blue-100 text-[#001489]'
+                    }`}
+                  &gt;
+                    &lt;IconComponent className=&quot;w-5 h-5&quot; /&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;h3 className=&quot;text-lg font-bold text-slate-900 mb-2 font-serif&quot;&gt;
+                  {stg.title}
+                &lt;/h3&gt;
+                &lt;p className=&quot;text-sm text-slate-600 leading-relaxed&quot;&gt;
+                  {stg.desc}
+                &lt;/p&gt;
+              &lt;/div&gt;
+            );
+          })}
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  );
+};
+</file>
+    <file path="src/components/Hero.tsx" bytes="8439">import React from 'react';
+import { ArrowRight, CheckCircle2, PhoneCall, MapPin, Wrench } from 'lucide-react';
+
+export const Hero: React.FC = () =&gt; {
+  return (
+    &lt;section className=&quot;relative pt-20 pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#06162D] text-white&quot;&gt;
+      
+      {/* Background Cinematic Video with Dark Navy Gradient Overlay */}
+      &lt;div className=&quot;absolute inset-0 z-0 overflow-hidden pointer-events-none&quot;&gt;
+        &lt;video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className=&quot;w-full h-full object-cover opacity-25 scale-105 filter saturate-150&quot;
+          poster=&quot;/images/hero-poster.jpg&quot;
+        &gt;
+          &lt;source src=&quot;/videos/auburn-hero.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+        &lt;/video&gt;
+        {/* Deep Navy/Black Gradient Overlay for optimal readability */}
+        &lt;div className=&quot;absolute inset-0 bg-gradient-to-r from-[#06162D] via-[#06162D]/90 to-[#080D1A]/85&quot; /&gt;
+        &lt;div className=&quot;absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,_rgba(0,20,137,0.35)_0%,_transparent_70%)]&quot; /&gt;
+      &lt;/div&gt;
+
+      &lt;div className=&quot;max-w-7xl mx-auto relative z-10&quot;&gt;
+        &lt;div className=&quot;grid grid-cols-1 lg:grid-cols-12 gap-12 items-center&quot;&gt;
+          
+          {/* Left Column: Authentic Auburn SMB Messaging */}
+          &lt;div className=&quot;lg:col-span-7&quot;&gt;
+            
+            {/* Overline matching screenshot */}
+            &lt;div className=&quot;flex items-center gap-2 text-xs font-display font-bold tracking-[0.25em] text-[#F25A24] uppercase mb-5&quot;&gt;
+              &lt;span className=&quot;w-6 h-[2px] bg-[#F25A24]&quot; /&gt;
+              WHY AUBURN
+            &lt;/div&gt;
+
+            {/* Main Headline */}
+            &lt;h1 className=&quot;text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] mb-6&quot;&gt;
+              Small business &lt;br /&gt;
+              &lt;span className=&quot;font-serif italic font-normal text-[#F25A24]&quot;&gt;
+                deserves big energy.
+              &lt;/span&gt;
+            &lt;/h1&gt;
+
+            {/* Targeted User Tagline */}
+            &lt;div className=&quot;inline-flex items-center gap-2 bg-[#001489]/40 border border-blue-500/30 px-3.5 py-1.5 rounded-lg mb-6&quot;&gt;
+              &lt;Wrench className=&quot;w-4 h-4 text-[#F25A24]&quot; /&gt;
+              &lt;span className=&quot;text-xs sm:text-sm font-semibold text-slate-200 font-display&quot;&gt;
+                Built for the business owner who still uses his hands.
+              &lt;/span&gt;
+            &lt;/div&gt;
+
+            {/* Core Body Copy from Brand Document */}
+            &lt;p className=&quot;text-base sm:text-lg text-slate-300 mb-6 leading-relaxed max-w-2xl font-normal&quot;&gt;
+              We are a digital branding partner for the businesses that make a community feel like home. No bloated retainers. No one-size-fits-all playbooks. Just sharp thinking, thoughtful design, and smart technology built around your next chapter.
+            &lt;/p&gt;
+
+            {/* Value Callout Box */}
+            &lt;div className=&quot;bg-slate-900/80 border-l-4 border-[#F25A24] p-4 rounded-r-xl mb-8 max-w-2xl border-y border-r border-slate-800&quot;&gt;
+              &lt;p className=&quot;text-sm sm:text-base text-slate-200 leading-relaxed&quot;&gt;
+                With AI-enhanced tools and a human point of view, we turn limited resources into an unfair advantage.
+              &lt;/p&gt;
+            &lt;/div&gt;
+
+            {/* CTAs */}
+            &lt;div className=&quot;flex flex-col sm:flex-row gap-4 mb-10&quot;&gt;
+              &lt;a
+                href=&quot;#audit&quot;
+                className=&quot;bg-[#F25A24] hover:bg-[#d94917] text-white font-display text-sm font-bold uppercase tracking-wider px-8 py-4 rounded-xl shadow-xl hover:shadow-[#F25A24]/30 text-center transition duration-200 flex items-center justify-center gap-2&quot;
+              &gt;
+                &lt;span&gt;Claim Free Revenue Scan&lt;/span&gt;
+                &lt;ArrowRight className=&quot;w-4 h-4&quot; /&gt;
+              &lt;/a&gt;
+              &lt;a
+                href=&quot;#services&quot;
+                className=&quot;bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700 font-display text-sm font-bold uppercase tracking-wider px-8 py-4 rounded-xl text-center transition duration-200&quot;
+              &gt;
+                Explore Solutions
+              &lt;/a&gt;
+            &lt;/div&gt;
+
+            {/* Location Grounding */}
+            &lt;div className=&quot;pt-6 border-t border-slate-800 flex items-center gap-2 text-xs font-display tracking-wider uppercase font-semibold text-[#F25A24]&quot;&gt;
+              &lt;MapPin className=&quot;w-4 h-4 text-[#F25A24] shrink-0&quot; /&gt;
+              &lt;span&gt;Proudly serving Auburn, Opelika, and communities across Alabama.&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          {/* Right Column: Auburn SMB Performance Terminal */}
+          &lt;div className=&quot;lg:col-span-5&quot;&gt;
+            &lt;div className=&quot;relative bg-[#080D1A]/95 rounded-2xl p-6 sm:p-8 shadow-2xl border border-slate-800 text-white backdrop-blur-sm&quot;&gt;
+              
+              {/* Card Header */}
+              &lt;div className=&quot;flex items-center justify-between pb-4 mb-6 border-b border-slate-800&quot;&gt;
+                &lt;div className=&quot;flex items-center gap-3&quot;&gt;
+                  &lt;div className=&quot;w-3 h-3 rounded-full bg-emerald-500 animate-ping&quot; /&gt;
+                  &lt;span className=&quot;font-display font-bold text-xs sm:text-sm text-slate-200 uppercase tracking-wider&quot;&gt;
+                    AUBURN SMB REVENUE TERMINAL
+                  &lt;/span&gt;
+                &lt;/div&gt;
+                &lt;span className=&quot;text-[10px] bg-blue-900/60 border border-blue-700 text-blue-300 font-bold px-2 py-0.5 rounded&quot;&gt;
+                  LEE COUNTY ACTIVE
+                &lt;/span&gt;
+              &lt;/div&gt;
+
+              {/* Trade &amp; Contractor Focus Metrics */}
+              &lt;div className=&quot;grid grid-cols-2 gap-4 mb-6&quot;&gt;
+                &lt;div className=&quot;bg-slate-900/90 p-4 rounded-xl border border-slate-800&quot;&gt;
+                  &lt;span className=&quot;text-[11px] text-slate-400 font-semibold block uppercase&quot;&gt;
+                    Missed Call Recovery
+                  &lt;/span&gt;
+                  &lt;span className=&quot;text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono&quot;&gt;
+                    &amp;lt; 15s
+                  &lt;/span&gt;
+                  &lt;span className=&quot;text-[10px] text-slate-500 mt-1 block&quot;&gt;
+                    Instant text while you're on the job
+                  &lt;/span&gt;
+                &lt;/div&gt;
+
+                &lt;div className=&quot;bg-slate-900/90 p-4 rounded-xl border border-slate-800&quot;&gt;
+                  &lt;span className=&quot;text-[11px] text-slate-400 font-semibold block uppercase&quot;&gt;
+                    Closing Rate Lift
+                  &lt;/span&gt;
+                  &lt;span className=&quot;text-2xl sm:text-3xl font-extrabold text-[#F25A24] font-mono&quot;&gt;
+                    +38.4%
+                  &lt;/span&gt;
+                  &lt;span className=&quot;text-[10px] text-slate-500 mt-1 block&quot;&gt;
+                    High-trust brand positioning
+                  &lt;/span&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              {/* Real World Scenario Alert */}
+              &lt;div className=&quot;bg-blue-950/40 border border-blue-900/80 p-4 rounded-xl mb-6&quot;&gt;
+                &lt;div className=&quot;flex items-center gap-2 text-xs font-bold text-white mb-1.5&quot;&gt;
+                  &lt;PhoneCall className=&quot;w-4 h-4 text-[#F25A24]&quot; /&gt;
+                  &lt;span&gt;On-the-Job Lead Protection&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;p className=&quot;text-xs text-slate-300 leading-relaxed&quot;&gt;
+                  You're under a sink, on a roof, or on a scissor lift. A customer calls. Nova AI texts them within 15 seconds, qualifies their job, and books them on your calendar.
+                &lt;/p&gt;
+              &lt;/div&gt;
+
+              {/* Trust Checkmarks */}
+              &lt;div className=&quot;space-y-2.5 text-xs text-slate-300&quot;&gt;
+                &lt;div className=&quot;flex items-center gap-2&quot;&gt;
+                  &lt;CheckCircle2 className=&quot;w-4 h-4 text-emerald-400 shrink-0&quot; /&gt;
+                  &lt;span&gt;No corporate agency fluff or bloated retainers&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div className=&quot;flex items-center gap-2&quot;&gt;
+                  &lt;CheckCircle2 className=&quot;w-4 h-4 text-emerald-400 shrink-0&quot; /&gt;
+                  &lt;span&gt;Built for trade contractors, field services &amp;amp; local shops&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div className=&quot;flex items-center gap-2&quot;&gt;
+                  &lt;CheckCircle2 className=&quot;w-4 h-4 text-emerald-400 shrink-0&quot; /&gt;
+                  &lt;span&gt;Personal 1-on-1 strategy with Shawn Sommerville&lt;/span&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  );
+};
+</file>
+    <file path="src/components/Logo.tsx" bytes="1336">import React from 'react';
+
+interface LogoProps {
+  variant?: 'light' | 'dark';
+  className?: string;
+}
+
+export const Logo: React.FC&lt;LogoProps&gt; = ({ variant = 'light', className = '' }) =&gt; {
+  const isDark = variant === 'dark';
+  return (
+    &lt;div className={`flex items-center gap-3 ${className}`}&gt;
+      &lt;svg className=&quot;w-10 h-10 transform transition duration-300 hover:scale-105&quot; viewBox=&quot;0 0 100 100&quot; fill=&quot;none&quot;&gt;
+        &lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;44&quot; stroke=&quot;#F25A24&quot; stroke-width=&quot;7&quot; stroke-dasharray=&quot;190 80&quot; stroke-linecap=&quot;round&quot; /&gt;
+        &lt;path d=&quot;M42 35 C46 32 54 30 62 31 C68 32 75 37 76 43 C72 41 68 42 66 45 C73 45 76 49 75 55 C70 53 66 54 64 58 C68 62 67 69 62 73 C58 66 57 60 52 56 C46 64 42 70 36 75 C41 68 43 60 41 53 C36 58 31 63 26 67 C30 58 34 50 37 42 C33 46 29 50 25 54 C28 44 34 37 42 35 Z&quot; fill={isDark ? &quot;#0A25C9&quot; : &quot;#001489&quot;} /&gt;
+        &lt;polygon points=&quot;46,41 52,42 49,44&quot; fill=&quot;#FFFFFF&quot; /&gt;
+      &lt;/svg&gt;
+      &lt;div className=&quot;flex flex-col&quot;&gt;
+        &lt;span className={`font-serif text-2xl font-bold tracking-tight leading-none ${isDark ? 'text-white' : 'text-[#001489]'}`}&gt;
+          Auburn
+        &lt;/span&gt;
+        &lt;span className=&quot;font-display text-[9px] font-bold tracking-[0.2em] text-[#8C827A] uppercase leading-none mt-1&quot;&gt;
+          Professional Branding
+        &lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
+</file>
+    <file path="src/components/Navbar.tsx" bytes="3105">import React, { useState } from 'react';
+import { Logo } from './Logo';
+import { Menu, X, ArrowRight } from 'lucide-react';
+
+export const Navbar: React.FC = () =&gt; {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    &lt;header className=&quot;sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm&quot;&gt;
+      &lt;div className=&quot;max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between&quot;&gt;
+        &lt;a href=&quot;#&quot;&gt;
+          &lt;Logo /&gt;
+        &lt;/a&gt;
+
+        {/* Desktop Nav */}
+        &lt;nav className=&quot;hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700&quot;&gt;
+          &lt;a href=&quot;#services&quot; className=&quot;hover:text-[#001489] transition&quot;&gt;Services&lt;/a&gt;
+          &lt;a href=&quot;#nova&quot; className=&quot;hover:text-[#001489] transition flex items-center gap-1.5&quot;&gt;
+            &lt;span&gt;Nova AI&lt;/span&gt;
+            &lt;span className=&quot;bg-blue-100 text-[#001489] text-[10px] font-bold px-2 py-0.5 rounded-full&quot;&gt;
+              Automated
+            &lt;/span&gt;
+          &lt;/a&gt;
+          &lt;a href=&quot;#framework&quot; className=&quot;hover:text-[#001489] transition&quot;&gt;6-Stage Model&lt;/a&gt;
+          &lt;a href=&quot;#audit&quot; className=&quot;hover:text-[#001489] transition&quot;&gt;Audit&lt;/a&gt;
+        &lt;/nav&gt;
+
+        {/* Action Button */}
+        &lt;div className=&quot;hidden md:flex items-center gap-4&quot;&gt;
+          &lt;a
+            href=&quot;#audit&quot;
+            className=&quot;bg-[#F25A24] hover:bg-[#d94917] text-white text-sm font-bold px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition duration-200 transform hover:-translate-y-0.5 flex items-center gap-2&quot;
+          &gt;
+            &lt;span&gt;Book Free Audit&lt;/span&gt;
+            &lt;ArrowRight className=&quot;w-4 h-4&quot; /&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+
+        {/* Mobile menu button */}
+        &lt;button
+          onClick={() =&gt; setIsOpen(!isOpen)}
+          className=&quot;md:hidden p-2 text-slate-600 hover:text-slate-900&quot;
+          aria-label=&quot;Toggle Menu&quot;
+        &gt;
+          {isOpen ? &lt;X className=&quot;w-6 h-6&quot; /&gt; : &lt;Menu className=&quot;w-6 h-6&quot; /&gt;}
+        &lt;/button&gt;
+      &lt;/div&gt;
+
+      {/* Mobile Nav Drawer */}
+      {isOpen &amp;&amp; (
+        &lt;div className=&quot;md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-4&quot;&gt;
+          &lt;a
+            href=&quot;#services&quot;
+            onClick={() =&gt; setIsOpen(false)}
+            className=&quot;block text-base font-semibold text-slate-700 hover:text-[#001489]&quot;
+          &gt;
+            Services
+          &lt;/a&gt;
+          &lt;a
+            href=&quot;#nova&quot;
+            onClick={() =&gt; setIsOpen(false)}
+            className=&quot;block text-base font-semibold text-slate-700 hover:text-[#001489]&quot;
+          &gt;
+            Nova AI Revenue System
+          &lt;/a&gt;
+          &lt;a
+            href=&quot;#framework&quot;
+            onClick={() =&gt; setIsOpen(false)}
+            className=&quot;block text-base font-semibold text-slate-700 hover:text-[#001489]&quot;
+          &gt;
+            6-Stage Revenue Model
+          &lt;/a&gt;
+          &lt;a
+            href=&quot;#audit&quot;
+            onClick={() =&gt; setIsOpen(false)}
+            className=&quot;block bg-[#F25A24] text-white text-center font-bold py-3 rounded-lg&quot;
+          &gt;
+            Book Free Audit
+          &lt;/a&gt;
+        &lt;/div&gt;
+      )}
+    &lt;/header&gt;
+  );
+};
+</file>
+    <file path="src/components/Services.tsx" bytes="4245">import React from 'react';
+import { Palette, Bot, Globe, MapPin, Database, Send } from 'lucide-react';
+
+const services = [
+  {
+    title: 'Brand Architecture &amp; Identity',
+    desc: 'Complete identity systems, vector emblems, corporate color theory, and digital asset kits that position you as the premium authority in your market.',
+    icon: Palette,
+    bullets: ['Primary &amp; Secondary Logo Suites', 'Full Brand Guidelines Document', 'Asset Kits for Print &amp; Web'],
+  },
+  {
+    title: 'Nova Speed-to-Lead Automation',
+    desc: 'Never forfeit high-ticket jobs to missed calls. Nova intercepts missed inquiries with an automated, customized text within 15 seconds.',
+    icon: Bot,
+    bullets: ['Missed-Call AI Text-Back', '24/7 Inquiry Qualification', 'Direct Calendar Self-Booking'],
+  },
+  {
+    title: 'High-Converting Web Systems',
+    desc: 'Ultra-fast, mobile-first React and Tailwind architectures built to transform inbound search traffic into qualified phone calls and appointments.',
+    icon: Globe,
+    bullets: ['Performance Vitals 95+', 'Integrated Direct Booking', 'SEO Structured Schema'],
+  },
+  {
+    title: 'Local Market Dominance',
+    desc: 'Google Business Profile optimization, local service area pages, and citation authority that capture top placement in regional Map Packs.',
+    icon: MapPin,
+    bullets: ['Google Map Pack Ranking', 'Localized Service Hubs', 'Review Acceleration Engine'],
+  },
+  {
+    title: 'CRM &amp; Pipeline Engineering',
+    desc: 'Structured database systems in Airtable with automated status notifications, estimate tracking, and multi-stage deal pipelines.',
+    icon: Database,
+    bullets: ['Automated Stage Triggers', 'GA4 Goal Event Tracking', 'Multi-Channel Alert Dispatch'],
+  },
+  {
+    title: 'Direct Outreach Systems',
+    desc: 'Outbound B2B infrastructure connecting trade contractors with commercial accounts, property managers, and general builders.',
+    icon: Send,
+    bullets: ['Commercial Prospect Lists', 'Automated Email Sequences', 'Inbox Deliverability Guard'],
+  },
+];
+
+export const Services: React.FC = () =&gt; {
+  return (
+    &lt;section id=&quot;services&quot; className=&quot;py-24 bg-[#F8FAFC]&quot;&gt;
+      &lt;div className=&quot;max-w-7xl mx-auto px-4 sm:px-6 lg:px-8&quot;&gt;
+        &lt;div className=&quot;text-center max-w-3xl mx-auto mb-16&quot;&gt;
+          &lt;span className=&quot;text-[#F25A24] font-display font-bold text-xs uppercase tracking-widest&quot;&gt;
+            Capabilities
+          &lt;/span&gt;
+          &lt;h2 className=&quot;font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-2 mb-4&quot;&gt;
+            Unified Brand &amp;amp; Automation Architecture
+          &lt;/h2&gt;
+          &lt;p className=&quot;text-slate-600 text-base&quot;&gt;
+            We merge design prestige with operational systems so your business commands higher rates and captures every customer inquiry.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8&quot;&gt;
+          {services.map((svc, i) =&gt; {
+            const Icon = svc.icon;
+            return (
+              &lt;div
+                key={i}
+                className=&quot;bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md hover:border-[#001489] transition duration-300 flex flex-col justify-between&quot;
+              &gt;
+                &lt;div&gt;
+                  &lt;div className=&quot;w-12 h-12 bg-blue-50 text-[#001489] rounded-xl flex items-center justify-center mb-6&quot;&gt;
+                    &lt;Icon className=&quot;w-6 h-6&quot; /&gt;
+                  &lt;/div&gt;
+                  &lt;h3 className=&quot;text-xl font-bold text-slate-900 mb-3 font-serif&quot;&gt;
+                    {svc.title}
+                  &lt;/h3&gt;
+                  &lt;p className=&quot;text-slate-600 text-sm leading-relaxed mb-6&quot;&gt;
+                    {svc.desc}
+                  &lt;/p&gt;
+                &lt;/div&gt;
+
+                &lt;ul className=&quot;text-xs text-slate-500 space-y-2 border-t border-slate-100 pt-4&quot;&gt;
+                  {svc.bullets.map((b, idx) =&gt; (
+                    &lt;li key={idx} className=&quot;flex items-center gap-2&quot;&gt;
+                      &lt;span className=&quot;w-1.5 h-1.5 rounded-full bg-[#F25A24]&quot; /&gt;
+                      &lt;span&gt;{b}&lt;/span&gt;
+                    &lt;/li&gt;
+                  ))}
+                &lt;/ul&gt;
+              &lt;/div&gt;
+            );
+          })}
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  );
+};
+</file>
+  </files>
+</project_manifest>

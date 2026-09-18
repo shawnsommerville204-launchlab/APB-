@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-cobalt: #001489;
+  --color-brand-vibrant: #0A25C9;
+  --color-brand-orange: #F25A24;
+  --color-brand-orange-hover: #d94917;
+  --color-brand-slate: #8C827A;
+  --color-brand-navy: #080D1A;
+  --color-brand-card-navy: #0F172A;
+  --color-brand-light-bg: #F8FAFC;
+
+  --font-serif: "DM Serif Display", serif;
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Montserrat", sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
