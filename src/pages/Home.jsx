@@ -1,5 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useInView } from '../hooks/useInView';
+import { useCountUp } from '../hooks/useCountUp';
+
+function Reveal({ children, className = '', style }) {
+  const { ref, inView } = useInView();
+  return (
+    <div ref={ref} className={`reveal ${inView ? 'is-visible' : ''} ${className}`} style={style}>
+      {children}
+    </div>
+  );
+}
 
 export default function Home({ openCalendly }) {
   const [monthlyLeads, setMonthlyLeads] = useState(30);
@@ -8,12 +19,16 @@ export default function Home({ openCalendly }) {
   const recoveredCapture = 0.55;
   const estimatedRecoveredDeals = Math.round(monthlyLeads * missedRate * recoveredCapture);
   const estimatedMonthlyGains = estimatedRecoveredDeals * averageJobValue;
+  const animatedGains = useCountUp(estimatedMonthlyGains);
+  const { ref: dispatchRef, inView: dispatchInView } = useInView(0.3);
 
   return (
     <div>
       {/* Hero Section */}
-      <section className="pt-8 pb-16 sm:pt-14 sm:pb-24 bg-gradient-to-b from-[#FAF8F5] via-[#F3EFEA] to-[#FAF8F5] border-b border-[#E8E1D7]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-8 pb-16 sm:pt-14 sm:pb-24 bg-gradient-to-b from-[#FAF8F5] via-[#F3EFEA] to-[#FAF8F5] border-b border-[#E8E1D7] overflow-hidden">
+        <div className="absolute inset-0 tech-grid-bg [mask-image:radial-gradient(ellipse_65%_65%_at_50%_15%,black,transparent)]" />
+        <div className="tech-glow absolute -top-32 left-1/2 -translate-x-1/2 w-[40rem] h-[40rem] rounded-full bg-[#0A25C9]/15 blur-3xl" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-8 pb-6 border-b border-[#E8E1D7]/70 text-center sm:text-left">
             <img 
@@ -83,7 +98,7 @@ export default function Home({ openCalendly }) {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="bg-[#060d2b] rounded-3xl p-6 sm:p-8 text-white shadow-2xl border-4 border-[#E8E1D7]/40 relative overflow-hidden">
+              <div ref={dispatchRef} className="bg-[#060d2b] rounded-3xl p-6 sm:p-8 text-white shadow-2xl border-4 border-[#E8E1D7]/40 relative overflow-hidden">
                 <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
                   <div className="flex items-center gap-2.5">
                     <div className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />
@@ -95,7 +110,9 @@ export default function Home({ openCalendly }) {
                 </div>
 
                 <div className="space-y-4 mb-6 text-xs">
-                  <div className="bg-white/10 p-3.5 rounded-xl border border-white/10">
+                  <div
+                    className={`bg-white/10 p-3.5 rounded-xl border border-white/10 transition-all duration-500 ${dispatchInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}
+                  >
                     <div className="flex justify-between text-slate-400 mb-1">
                       <span>Inbound Missed Call: Slab Leak Emergency</span>
                       <span className="text-amber-400 font-mono">6:42 PM</span>
@@ -103,7 +120,10 @@ export default function Home({ openCalendly }) {
                     <p className="text-slate-200">Missed while technician was completing pipe pressure test.</p>
                   </div>
 
-                  <div className="bg-[#001489]/60 p-3.5 rounded-xl border border-blue-400/30">
+                  <div
+                    className={`bg-[#001489]/60 p-3.5 rounded-xl border border-blue-400/30 transition-all duration-500 ${dispatchInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}
+                    style={{ transitionDelay: dispatchInView ? '450ms' : '0ms' }}
+                  >
                     <div className="flex justify-between text-blue-200 mb-1">
                       <span>Nova AI Instant SMS Trigger</span>
                       <span className="text-emerald-400 font-mono">00:08s</span>
@@ -111,7 +131,10 @@ export default function Home({ openCalendly }) {
                     <p className="text-white italic">"Hey David, saw we just missed your call. Are you experiencing an active water leak or plumbing emergency tonight?"</p>
                   </div>
 
-                  <div className="bg-emerald-950/60 p-3.5 rounded-xl border border-emerald-500/30 flex items-center justify-between">
+                  <div
+                    className={`bg-emerald-950/60 p-3.5 rounded-xl border border-emerald-500/30 flex items-center justify-between transition-all duration-500 ${dispatchInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}
+                    style={{ transitionDelay: dispatchInView ? '900ms' : '0ms' }}
+                  >
                     <div>
                       <span className="text-emerald-300 font-bold block">Lead Captured & Scheduled</span>
                       <span className="text-slate-300 text-[11px]">8:00 AM First Stop Dispatched</span>
@@ -146,7 +169,7 @@ export default function Home({ openCalendly }) {
             </p>
           </div>
 
-          <div className="bg-[#FAF8F5] rounded-3xl p-6 sm:p-10 border border-[#E8E1D7] max-w-4xl mx-auto shadow-sm">
+          <Reveal className="bg-[#FAF8F5] rounded-3xl p-6 sm:p-10 border border-[#E8E1D7] max-w-4xl mx-auto shadow-sm">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               
               <div className="space-y-6">
@@ -188,8 +211,8 @@ export default function Home({ openCalendly }) {
                 <div className="text-xs uppercase tracking-widest text-amber-300 font-bold mb-2">
                   Recovered Revenue Estimate
                 </div>
-                <div className="text-4xl sm:text-5xl font-bold text-emerald-400 mb-2">
-                  +${estimatedMonthlyGains.toLocaleString()}
+                <div className="text-4xl sm:text-5xl font-bold text-emerald-400 mb-2 font-mono tabular-nums">
+                  +${animatedGains.toLocaleString()}
                 </div>
                 <div className="text-xs text-slate-300 uppercase tracking-wider mb-6">
                   Estimated Monthly Pipeline Recaptured
@@ -199,14 +222,14 @@ export default function Home({ openCalendly }) {
                 </div>
                 <button 
                   onClick={openCalendly}
-                  className="w-full bg-[#F25A24] hover:bg-[#fa7a4b] text-white font-bold text-xs uppercase tracking-wider py-3.5 rounded-lg transition"
+                  className="sheen w-full bg-[#F25A24] hover:bg-[#fa7a4b] text-white font-bold text-xs uppercase tracking-wider py-3.5 rounded-lg transition"
                 >
                   Book Free Audit & Plug This Leak
                 </button>
               </div>
 
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
     </div>
